@@ -1,13 +1,16 @@
 
 import io.github.cdimascio.dotenv.Dotenv;
+import static io.github.cdimascio.dotenv.DslKt.dotenv;
 /**
  *
  * @author Luis Miguel
  */
 public class Perros {
+    Dotenv dotenv = Dotenv.load();
+    
     private int ID;
     private String url;
-    String apiKey = ;
+    private String apiKey = dotenv.get("API_KEY");
     String image;
 
     
