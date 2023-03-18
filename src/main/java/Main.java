@@ -1,4 +1,5 @@
 
+import perros.PerrosService;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -24,7 +25,7 @@ public class Main {
            switch(menu){
                case 0:
                    break;
-               case 1:
+               case 1: PerrosService.verPerros();
                    break;
            }
        }while(menu != 1);
