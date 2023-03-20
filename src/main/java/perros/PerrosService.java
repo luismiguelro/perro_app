@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -28,9 +29,8 @@ public class PerrosService {
         //Guardar rta
         String elJson = response.body().string();
         
-        // cortar primer y ultimo caracter(substring)
-        elJson = elJson.substring(1,elJson.length());
-        elJson = elJson.substring(0,elJson.length()-1);
+        // cortar caracteres (primero y el ultimo
+        elJson = elJson.substring(1, elJson.length()-1);
         
         
         //convertir objeto perro
@@ -54,9 +54,44 @@ public class PerrosService {
                 Image modificada = fondo.getScaledInstance(800, 600, java.awt.Image.SCALE_SMOOTH);
                 fondoPerrito = new ImageIcon(modificada);
             }
+            
+            // menu
+            String menu = "Opciones: \n"
+                    + "1. Ver otra imagen\n"
+                    + "2. Favorito\n"
+                    + "3. Volver al menú\n";
+            
+            //Menu
+            String [] botones = {" Ver otra imagen","Favorito"+"Volver al menú"};
+            
+            // guardar id perrito ( valueof: convertir string)
+            String id_perro = perros.getId();
+            
+            // interfaz
+            String opcion = (String)JOptionPane.showInputDialog(null,menu,id_perro,JOptionPane.INFORMATION_MESSAGE,fondoPerrito,botones,botones[0]);
+            
+            // validar selección del usuario
+            int seleccion =-1;
+            for(int i=0; i<botones.length;i++){
+                if(opcion.equals(botones[i])){
+                    seleccion =1;
+                }
+            }
+            
+            switch(seleccion){
+                case 0: verPerros();
+                    break;
+                case 1:// favoritoPerro(perro);
+                    break;
+                default:
+                    break;
+            }
         }catch(IOException e){
             System.out.println(e);
         }
+    }
+    public static void favoritoPerros(Perros perro){
+        
     }
     
 }

@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import perros.PerrosService;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -8,7 +9,7 @@ import javax.swing.JOptionPane;
  * @author Luis Miguel
  */
 public class Main {
-    public static void main (String [] args){
+    public static void main (String [] args) throws IOException{
         int menu = -1;
        String [] botones ={"1.Ver perritos :)","2.Salir"};
         
@@ -24,9 +25,10 @@ public class Main {
            }
            switch(menu){
                case 0:
-                   break;
-               case 1: PerrosService.verPerros();
-                   break;
+                    PerrosService.verPerros();
+                    break;
+                default:
+                    break;
            }
        }while(menu != 1);
     }

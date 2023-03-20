@@ -1,3 +1,5 @@
+package perros;
+
 
 import io.github.cdimascio.dotenv.Dotenv;
 import static io.github.cdimascio.dotenv.DslKt.dotenv;
@@ -8,18 +10,18 @@ import static io.github.cdimascio.dotenv.DslKt.dotenv;
 public class Perros {
     Dotenv dotenv = Dotenv.load();
     
-    private int ID;
+    private String ID;
     private String url;
     private String apiKey = dotenv.get("API_KEY");
     String image;
 
     
     // get y set
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
