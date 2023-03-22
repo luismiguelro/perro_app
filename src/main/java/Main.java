@@ -1,6 +1,4 @@
-
 import java.io.IOException;
-import perros.PerrosService;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

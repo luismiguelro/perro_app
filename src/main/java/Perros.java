@@ -1,19 +1,22 @@
-package perros;
-
-
 import io.github.cdimascio.dotenv.Dotenv;
-import static io.github.cdimascio.dotenv.DslKt.dotenv;
+
+
 /**
  *
  * @author Luis Miguel
  */
 public class Perros {
+    
     Dotenv dotenv = Dotenv.load();
     
     private String ID;
     private String url;
-    private String apiKey = dotenv.get("API_KEY");
+    private String apiKey;
     String image;
+
+    public Perros() {
+        this.apiKey = dotenv.get("/*API_KEY*/");
+    }
 
     
     // get y set
@@ -48,6 +51,5 @@ public class Perros {
     public void setImage(String image) {
         this.image = image;
     }
-    
     
 }

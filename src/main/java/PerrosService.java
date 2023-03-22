@@ -1,5 +1,3 @@
-package perros;
-
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -17,8 +15,7 @@ import javax.swing.JOptionPane;
  * @author Luis Miguel
  */
 public class PerrosService {
-    
-    // Metodos del menu(throws EX,E/S)
+     // Metodos del menu(throws EX,E/S)
     public static void verPerros() throws IOException{
         // traer datos API
         OkHttpClient client = new OkHttpClient();
@@ -65,7 +62,7 @@ public class PerrosService {
             String [] botones = {" Ver otra imagen","Favorito"+"Volver al menú"};
             
             // guardar id perrito ( valueof: convertir string)
-            String id_perro = perros.getId();
+            String id_perro = perros.getID();
             
             // interfaz
             String opcion = (String)JOptionPane.showInputDialog(null,menu,id_perro,JOptionPane.INFORMATION_MESSAGE,fondoPerrito,botones,botones[0]);
@@ -93,5 +90,4 @@ public class PerrosService {
     public static void favoritoPerros(Perros perro){
         
     }
-    
 }
