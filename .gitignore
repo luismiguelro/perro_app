@@ -5,7 +5,7 @@ src/.DS_Store
 .project
 .classpath
 .DS_Store
-.env
+*.env
 
 ### Java ###
 # Compiled class file
