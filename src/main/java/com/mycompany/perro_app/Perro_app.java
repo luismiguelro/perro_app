@@ -1,14 +1,15 @@
+package com.mycompany.perro_app;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Luis Miguel
  */
-public class Main {
-    public static void main (String [] args) throws IOException{
-        int menu = -1;
+public class Perro_app {
+
+    public static void main(String[] args) throws IOException {
+         int menu = -1;
        String [] botones ={"1.Ver perritos :)","2.Salir"};
         
        do{
@@ -30,5 +31,5 @@ public class Main {
            }
        }while(menu != 1);
     }
-    
-}
+  }
+

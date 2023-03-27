@@ -1,12 +1,3 @@
-
-target/
-src/.DS_Store
-.settings/
-.project
-.classpath
-.DS_Store
-*.env
-
 ### Java ###
 # Compiled class file
 *.class
@@ -41,3 +32,12 @@ build/
 nbbuild/
 dist/
 nbdist/
+
+#Project Platzi
+target/
+src/.DS_Store
+.settings/
+.project
+.classpath
+.DS_Store
+.env
