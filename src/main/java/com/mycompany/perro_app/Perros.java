@@ -13,23 +13,18 @@ public class Perros {
     
     Dotenv dotenv = Dotenv.load();
     
-    private String ID;
+    private String id;
     private String url;
-    private String apiKey;
+    private String apiKey =dotenv.get("API_KEY") ;
     String image;
 
-    public Perros() {
-        this.apiKey = dotenv.get("API_KEY");
-    }
-
     
-    // get y set
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUrl() {
@@ -55,6 +50,6 @@ public class Perros {
     public void setImage(String image) {
         this.image = image;
     }
-    
+   
 }
 

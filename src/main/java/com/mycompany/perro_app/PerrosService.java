@@ -5,8 +5,10 @@
 package com.mycompany.perro_app;
 
 import com.google.gson.Gson;
+import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -68,10 +70,11 @@ public class PerrosService {
             String [] opciones = {"Ver otra imagen","Favorito","Volver al menú"};
             
             // guardar id perrito ( valueof: convertir string)
-            String id_perro =perros.getID();
+            String id_perro =perros.getId();
+            System.out.println(id_perro);
             
             // interfaz
-            String opcion = (String) JOptionPane.showInputDialog(null,menu,perros.getID(),JOptionPane.INFORMATION_MESSAGE,fondoPerrito,opciones,opciones[0]);
+            String opcion = (String) JOptionPane.showInputDialog(null,menu,perros.getId(),JOptionPane.INFORMATION_MESSAGE,fondoPerrito,opciones,opciones[0]);
             
             // validar selección del usuario
             int seleccion =-1;
@@ -84,7 +87,7 @@ public class PerrosService {
             switch(seleccion){
                 case 0: verPerros();
                     break;
-                case 1://favoritoPerro(perros);
+                case 1:favoritoPerros(perros);
                     break;
                 default:
                     break;
@@ -94,7 +97,21 @@ public class PerrosService {
         }
     }
     public static void favoritoPerros(Perros perro){
-        
+         
+        try{
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediaType = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediaType, "{\r\n\"image_id\":\""+perro.getId()+"\"\r\n}");
+            Request request = new Request.Builder()
+              .url("https://api.thedogapi.com/v1/favourites")
+              .method("POST", body)
+              .addHeader("x-api-key",perro.getApiKey())
+              .addHeader("Content-Type", "application/json")
+              .build();
+            Response response = client.newCall(request).execute();
+        }catch(IOException e){
+             System.out.println(e);
+        }
     }
-    
+ 
 }
