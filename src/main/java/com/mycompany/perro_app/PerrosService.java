@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.perro_app;
 
 import com.google.gson.Gson;
@@ -96,7 +92,7 @@ public class PerrosService {
             System.out.println(e);
         }
     }
-    public static void favoritoPerros(Perros perro){
+    public static void favoritoPerros(Perros perro) throws IOException{
          
         try{
             OkHttpClient client = new OkHttpClient();
@@ -112,6 +108,29 @@ public class PerrosService {
         }catch(IOException e){
              System.out.println(e);
         }
+        PerrosService.verPerros();
+    }
+    
+    public static void verFavorito(String apiKey) throws IOException{
+
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+          .url("https://api.thedogapi.com/v1/favourites")
+          .method("GET", body)
+          .addHeader("x-api-key",apiKey)
+          .build();
+        Response response = client.newCall(request).execute();
+        
+        // capturar respuesta
+        String elJson = response.body().string();
+        
+        // para que quede Objeto perro
+        Gson gson = new Gson();
+        
+        //array tipo perrosfav
+        PerrosFav[] perrosArray = gson.fromJson(elJson, PerrosFav[].class);
     }
  
 }
