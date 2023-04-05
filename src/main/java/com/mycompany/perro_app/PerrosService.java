@@ -39,25 +39,9 @@ public class PerrosService {
         Gson gson = new Gson();
         Perros perros = gson.fromJson(elJson, Perros.class);
         String id_perro = perros.getId();
-       
         
-        // redimensionar en caso de necesitqar
-        Image image = null;
         try{
-            URL url = new URL(perros.getUrl());
-            HttpURLConnection http = (HttpURLConnection) url.openConnection();
-            http.addRequestProperty("User-Agent", "");
-            BufferedImage bufferedImage = ImageIO.read(http.getInputStream());
-            ImageIcon fondoPerrito = new ImageIcon(bufferedImage);
-           
-            // validar width img
-            if(fondoPerrito.getIconWidth()>800){
-                // redimensionar
-                Image fondo = fondoPerrito.getImage();
-                Image modificada = fondo.getScaledInstance(800, 600, java.awt.Image.SCALE_SMOOTH);
-                fondoPerrito = new ImageIcon(modificada);
-            }
-            
+            ImageIcon fondoPerrito = redimensionarImagen(perros.getUrl(), 800, 600);
             // menu
             String menu = "Opciones: \n"
                     + "1. Ver otra imagen\n"
@@ -147,19 +131,7 @@ public class PerrosService {
             // redimensionar en caso de necesitqar
         Image image = null;
         try{
-            URL url = new URL(perroFav.image.getUrl());
-            HttpURLConnection http = (HttpURLConnection) url.openConnection();
-            http.addRequestProperty("User-Agent", "");
-            BufferedImage bufferedImage = ImageIO.read(http.getInputStream());
-            ImageIcon fondoPerrito = new ImageIcon(bufferedImage);
-           
-            // validar width img
-            if(fondoPerrito.getIconWidth()>800){
-                // redimensionar
-                Image fondo = fondoPerrito.getImage();
-                Image modificada = fondo.getScaledInstance(800, 600, java.awt.Image.SCALE_SMOOTH);
-                fondoPerrito = new ImageIcon(modificada);
-            }
+           ImageIcon fondoPerrito = redimensionarImagen(perroFav.image.getUrl(), 800, 600);
             
             // menu
             String menu = "Opciones: \n"
@@ -189,6 +161,8 @@ public class PerrosService {
                     break;
                 case 1: borrarFavorito(perroFav);
                     break;
+                case 2: verPerros();
+                    break; 
                 default:
                     break;
             }
@@ -200,4 +174,50 @@ public class PerrosService {
     public static void borrarFavorito(PerrosFav perroFav){
         
     }
+    
+    // ridimensionar la imagen
+    public static ImageIcon redimensionarImagen(String url, int anchoMaximo, int altoMaximo) {
+    try {
+        // objeto URL y abrir conexion HTTP
+        URL imageUrl = new URL(url);
+        HttpURLConnection http = (HttpURLConnection) imageUrl.openConnection();
+        http.addRequestProperty("User-Agent", "");
+        
+        // leeer la imagen de la URL utilizando ImageIO.read()
+        
+        BufferedImage imagenOriginal = ImageIO.read(http.getInputStream());
+        
+        //Creamr un objeto ImageIcon a partir de la imagen original.
+        ImageIcon imagen = new ImageIcon(imagenOriginal);
+        
+        
+        // Obtenemos el ancho y el alto de la imagen original. 
+        int anchoOriginal = imagen.getIconWidth();
+        int altoOriginal = imagen.getIconHeight();
+        
+        
+        //  Si la imagen es más grande que las dimensiones máximas,  calculamos la proporción necesaria para redimensionar la imagen 
+        // para que encaje dentro de las dimensiones máximas.
+        if (anchoOriginal > anchoMaximo || altoOriginal > altoMaximo) {
+            
+            double proporcionAncho = (double) anchoMaximo / anchoOriginal;
+            double proporcionAlto = (double) altoMaximo / altoOriginal;
+            double proporcionRedimension = Math.min(proporcionAncho, proporcionAlto);
+            /*
+            Calculamos las dimensiones de la imagen redimensionada y redimensionamos la imagen original utilizando el método getScaledInstance() 
+            de la clase Image.*/
+            int anchoRedimensionado = (int) (anchoOriginal * proporcionRedimension);
+            int altoRedimensionado = (int) (altoOriginal * proporcionRedimension);
+            Image imagenRedimensionada = imagenOriginal.getScaledInstance(anchoRedimensionado, altoRedimensionado, java.awt.Image.SCALE_SMOOTH);
+            
+            //Crea un nuevo objeto ImageIcon a partir de la imagen redimensionada.
+            imagen = new ImageIcon(imagenRedimensionada);
+        }
+        return imagen;
+    } catch (IOException e) {
+        System.out.println(e);
+        return null;
+    }
+}
+
 }
