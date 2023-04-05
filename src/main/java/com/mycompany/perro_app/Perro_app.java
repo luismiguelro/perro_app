@@ -10,7 +10,7 @@ public class Perro_app {
 
     public static void main(String[] args) throws IOException {
          int menu = -1;
-       String [] botones ={"1. Ver perritos U・ᴥ・U ","2. Ver favoritos ❤️" ,"3. Salir 💨 "};
+       String [] botones ={"1.Ver perritos :)","2. Ver favoritos","3.Salir"};
         
        do{
            // Menu principal
@@ -26,8 +26,7 @@ public class Perro_app {
                case 0:
                     PerrosService.verPerros();
                     break;
-               case 1:
-                   Perros perrofav = new Perros();
+               case 1:Perros perrofav = new Perros();
                    PerrosService.verFavorito(perrofav.getApiKey());
                    break;
                 default:

@@ -1,19 +1,16 @@
-
 package com.mycompany.perro_app;
 import io.github.cdimascio.dotenv.Dotenv;
-
 /**
  *
  * @author Luis Miguel
  */
-public class Perros {
-    
+public class PerrosFav {
     Dotenv dotenv = Dotenv.load();
-    String id;
-    String url;
-    private String apiKey= dotenv.get("API_KEY");;
-    String image;
-    // get y set
+    private String id;
+    private String image_id;
+    private String apiKey=dotenv.get("API_KEY");
+
+    Imagex image;
 
     public Dotenv getDotenv() {
         return dotenv;
@@ -31,12 +28,12 @@ public class Perros {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getImage_id() {
+        return image_id;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setImage_id(String image_id) {
+        this.image_id = image_id;
     }
 
     public String getApiKey() {
@@ -47,13 +44,14 @@ public class Perros {
         this.apiKey = apiKey;
     }
 
-    public String getImage() {
+    public Imagex getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(Imagex image) {
         this.image = image;
     }
     
+    
+    
 }
-
