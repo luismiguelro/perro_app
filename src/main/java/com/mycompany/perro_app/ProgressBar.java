@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.perro_app;
+
+import javax.swing.JFrame;
+import javax.swing.JProgressBar;
 
 /**
  *
  * @author Luis Miguel
  */
-public class ProgressBar {
-    
+public class ProgressBar extends JFrame {
+    private JProgressBar progressBar;
 }

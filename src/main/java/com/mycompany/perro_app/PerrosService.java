@@ -91,7 +91,7 @@ public class PerrosService {
               .build();
             Response response = client.newCall(request).execute();
         }catch(IOException e){
-             System.out.println(e);
+             System.out.println("Error en favorito perros: "+e);
         }
     }
     
@@ -167,12 +167,25 @@ public class PerrosService {
                     break;
             }
         }catch(IOException e){
-            System.out.println(e);
+            System.out.println("Error en ver favorito: "+e);
         }
         }
     }
     public static void borrarFavorito(PerrosFav perroFav){
-        
+        try{
+            OkHttpClient client = new OkHttpClient();
+          MediaType mediaType = MediaType.parse("application/json");
+          RequestBody body = RequestBody.create(mediaType, "");
+          Request request = new Request.Builder()
+            .url("https://api.thedogapi.com/v1/favourites/"+perroFav.getId()+"")
+            .method("DELETE", body)
+            .addHeader("Content-Type", "application/json")
+            .addHeader("x-api-key", perroFav.getApiKey())
+            .build();
+          Response response = client.newCall(request).execute();
+        } catch(IOException e){
+            System.out.println("Error en borrar favorito: "+e);
+        }
     }
     
     // ridimensionar la imagen
