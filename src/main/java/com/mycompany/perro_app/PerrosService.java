@@ -20,14 +20,20 @@ import javax.swing.JOptionPane;
  * @author Luis Miguel
  */
 public class PerrosService {
+    static ProgressBar pb = new ProgressBar();
       // Metodos del menu(throws EX,E/S)
     public static void verPerros() throws IOException{
+        // Inicia el indicador de carga
+       pb.setVisible(true);
+        
         // traer datos API
         OkHttpClient client = new OkHttpClient();
     
         Request request = new Request.Builder().url("https://api.thedogapi.com/v1/images/search").build();
         Response response = client.newCall(request).execute();
         
+         
+         
         //Guardar rta
         String elJson = response.body().string();
         
@@ -40,6 +46,8 @@ public class PerrosService {
         Perros perros = gson.fromJson(elJson, Perros.class);
         String id_perro = perros.getId();
         
+         
+        
         try{
             ImageIcon fondoPerrito = redimensionarImagen(perros.getUrl(), 800, 600);
             // menu
@@ -51,7 +59,8 @@ public class PerrosService {
             //Menu
             String [] opciones = {"Ver otra imagen","Favorito","Volver al menú"};
             
-            // guardar id perrito ( valueof: convertir string)
+            // Detiene el indicador de carga
+            pb.setVisible(false);
             
             
             // interfaz
@@ -73,10 +82,11 @@ public class PerrosService {
                 default:
                     break;
             }
-            PerrosService.verPerros();
+            
         }catch(IOException e){
             System.out.println(e);
         }
+       
     }
     public static void favoritoPerros(Perros perro){
         try{
@@ -96,7 +106,8 @@ public class PerrosService {
     }
     
     public static void verFavorito(String apiKey) throws IOException{
-        
+        // Inicia el indicador de carga
+       pb.setVisible(true);
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
@@ -142,7 +153,8 @@ public class PerrosService {
             //Menu
             String [] opciones = {"Ver otra imagen","Eliminar Favorito","Volver al menú"};
             
-            // guardar id perrito ( valueof: convertir string)
+            // Termina el indicador de carga
+               pb.setVisible(false);
             
             
             // interfaz
@@ -171,7 +183,9 @@ public class PerrosService {
         }
         }
     }
-    public static void borrarFavorito(PerrosFav perroFav){
+    public static void borrarFavorito(PerrosFav perroFav) throws IOException{
+        // Inicia el indicador de carga
+       pb.setVisible(true);
         try{
             OkHttpClient client = new OkHttpClient();
           MediaType mediaType = MediaType.parse("application/json");
@@ -186,6 +200,8 @@ public class PerrosService {
         } catch(IOException e){
             System.out.println("Error en borrar favorito: "+e);
         }
+        // Termina el indicador de carga
+       pb.setVisible(false);
     }
     
     // ridimensionar la imagen
