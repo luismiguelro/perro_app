@@ -1,4 +1,5 @@
-package com.mycompany.perro_app;
+package model;
+import service.PerrosService;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
