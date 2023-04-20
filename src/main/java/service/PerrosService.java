@@ -27,26 +27,14 @@ public class PerrosService {
     private static String BASE_URL ="https://api.thedogapi.com/v1";
     private static String SEARCH_ENDPOINT = "/images/search";
     private static String FAVORITE_ENDPOINT = BASE_URL+"favourites";
-    
-    // menus static
-    private static String FavoriteMenu = "Opciones: \n"
-                    + " 1. ver otra imagen 🔎\n"
-                    + " 2. Eliminar Favorito ❌\n"
-                    + " 3. Volver 🔙\n";
-
-                    private static String randomDogsMenu = "Opciones: \n"
-                    + " 1. Ver otra imagen 🔍\n"
-                    + " 2. Favorito ⭐\n"
-                    + " 3. Volver 🔙\n";
-    
+   
     // declarat objeto progress
     static ProgressBar pb = new ProgressBar();
     
     
       // Metodos del menu(throws EX,E/S)
-    public static void verPerros() throws IOException{
-        // Inicia el indicador de carga
-       pb.setVisible(true);
+    public static Perros verPerros() throws IOException{
+
         
         // traer datos API
         OkHttpClient client = new OkHttpClient();
@@ -66,43 +54,14 @@ public class PerrosService {
         //convertir objeto perro
         Gson gson = new Gson();
         Perros perros = gson.fromJson(elJson, Perros.class);
-        String id_perro = perros.getId();
+        return perros;
+//        String id_perro = perros.getId();
+//        
+//         
+//        
+//        ImageIcon fondoPerrito = redimensionarImagen(perros.getUrl(), 390, 290);
         
-         
         
-        try{
-            ImageIcon fondoPerrito = redimensionarImagen(perros.getUrl(), 800, 600);
-            //Menu
-            String [] opciones = {"Ver otra imagen","Favorito","Volver al menú"};
-            
-            // Detiene el indicador de carga
-            pb.setVisible(false);
-            
-            
-            // interfaz
-            String opcion = (String) JOptionPane.showInputDialog(null,randomDogsMenu,perros.getId(),JOptionPane.INFORMATION_MESSAGE,fondoPerrito,opciones,opciones[0]);
-            
-            // validar selección del usuario
-            int seleccion =-1;
-            for(int i=0; i<opciones.length;i++){
-                if(opcion.equals(opciones[i])){
-                    seleccion =i;
-                }
-            }
-            
-            switch(seleccion){
-                case 0: verPerros();
-                    break;
-                case 1:favoritoPerros(perros);
-                    break;
-                default:
-                    break;
-            }
-            
-        }catch(IOException e){
-            System.out.println(e);
-        }
-       
     }
     public static void favoritoPerros(Perros perro){
         try{
@@ -157,43 +116,11 @@ public class PerrosService {
             
             // redimensionar en caso de necesitqar
         Image image = null;
-        try{
-           ImageIcon fondoPerrito = redimensionarImagen(perroFav.getUrl(), 800, 600);
-            
-            
-            
-            //Menu
-            String [] opciones = {"Ver otra imagen","Eliminar Favorito","Volver al menú"};
-            
-            // Termina el indicador de carga
-               pb.setVisible(false);
-            
-            
-            // interfaz
-            String opcion = (String) JOptionPane.showInputDialog(null,FavoriteMenu,perroFav.getId(),JOptionPane.INFORMATION_MESSAGE,fondoPerrito,opciones,opciones[0]);
-            
-            // validar selección del usuario
-            int seleccion =-1;
-            for(int i=0; i<opciones.length;i++){
-                if(opcion.equals(opciones[i])){
-                    seleccion =i;
-                }
-            }
-            
-            switch(seleccion){
-                case 0: verFavorito(apiKey);
-                    break;
-                case 1: borrarFavorito(perroFav);
-                    break;
-                case 2: verPerros();
-                    break; 
-                default:
-                    break;
-            }
-        }catch(IOException e){
-            System.out.println("Error en ver favorito: "+e);
         }
-        }
+
+               
+         
+        
     }
     public static void borrarFavorito(PerrosFav perroFav) throws IOException{
         // Inicia el indicador de carga
@@ -216,42 +143,43 @@ public class PerrosService {
        pb.setVisible(false);
     }
     
-    // ridimensionar la imagen
-    public static ImageIcon redimensionarImagen(String url, int anchoMaximo, int altoMaximo) {
+public static ImageIcon redimensionarImagen(String url) {
     try {
         // objeto URL y abrir conexion HTTP
         URL imageUrl = new URL(url);
         HttpURLConnection http = (HttpURLConnection) imageUrl.openConnection();
         http.addRequestProperty("User-Agent", "");
-        
+
         // leeer la imagen de la URL utilizando ImageIO.read()
-        
+
         BufferedImage imagenOriginal = ImageIO.read(http.getInputStream());
-        
+
         //Creamr un objeto ImageIcon a partir de la imagen original.
         ImageIcon imagen = new ImageIcon(imagenOriginal);
-        
-        
-        // Obtenemos el ancho y el alto de la imagen original. 
+
+        // Obtenemos el ancho y el alto de la imagen original.
         int anchoOriginal = imagen.getIconWidth();
         int altoOriginal = imagen.getIconHeight();
-        
-        
-        //  Si la imagen es más grande que las dimensiones máximas,  calculamos la proporción necesaria para redimensionar la imagen 
+
+        // Definir los valores máximos de ancho y alto permitidos.
+        int anchoMaximo = 390;
+        int altoMaximo = 290;
+
+        // Si la imagen es más grande que las dimensiones máximas, calculamos la proporción necesaria para redimensionar la imagen 
         // para que encaje dentro de las dimensiones máximas.
         if (anchoOriginal > anchoMaximo || altoOriginal > altoMaximo) {
-            
+
             double proporcionAncho = (double) anchoMaximo / anchoOriginal;
             double proporcionAlto = (double) altoMaximo / altoOriginal;
             double proporcionRedimension = Math.min(proporcionAncho, proporcionAlto);
-            /*
-            Calculamos las dimensiones de la imagen redimensionada y redimensionamos la imagen original utilizando el método getScaledInstance() 
-            de la clase Image.*/
+
+            // Calculamos las dimensiones de la imagen redimensionada y redimensionamos la imagen original utilizando el método getScaledInstance() 
+            // de la clase Image.
             int anchoRedimensionado = (int) (anchoOriginal * proporcionRedimension);
             int altoRedimensionado = (int) (altoOriginal * proporcionRedimension);
             Image imagenRedimensionada = imagenOriginal.getScaledInstance(anchoRedimensionado, altoRedimensionado, java.awt.Image.SCALE_SMOOTH);
-            
-            //Crea un nuevo objeto ImageIcon a partir de la imagen redimensionada.
+
+            // Crea un nuevo objeto ImageIcon a partir de la imagen redimensionada.
             imagen = new ImageIcon(imagenRedimensionada);
         }
         return imagen;
@@ -260,5 +188,7 @@ public class PerrosService {
         return null;
     }
 }
+
+
 
 }

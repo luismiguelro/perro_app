@@ -4,6 +4,12 @@
  */
 package gui;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author Luis Miguel
@@ -15,6 +21,25 @@ public class AppPerro extends javax.swing.JFrame {
      */
     public AppPerro() {
         initComponents();
+    
+        setSize(890,590);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        
+        
+        //change imagen
+        ImageIcon wallpaper = new ImageIcon("src/imagenes/fondo.png");
+        
+        
+        //adapt to jlabel
+        Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(jLabel_wallpaper.getWidth(),jLabel_wallpaper.getHeight(),Image.SCALE_DEFAULT));
+        
+        //add to jlabel
+        jLabel_wallpaper.setIcon(icono);
+        this.repaint();
+        
     }
 
     /**
@@ -26,22 +51,145 @@ public class AppPerro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jlabelTitulo = new javax.swing.JLabel();
+        txtImgPerrito = new javax.swing.JTextField();
+        btnSiguiente = new javax.swing.JButton();
+        btnFavorito = new javax.swing.JButton();
+        jlabelInfo = new javax.swing.JLabel();
+        jlabelTituloPerrito = new javax.swing.JLabel();
+        txtPrincipal = new javax.swing.JTextField();
+        btnSalir = new javax.swing.JButton();
+        btnPerfil = new javax.swing.JButton();
+        btnAjustes = new javax.swing.JButton();
+        btnFavoritos = new javax.swing.JButton();
+        btnLogo1 = new javax.swing.JButton();
+        btnInicio2 = new javax.swing.JButton();
+        jLabel_wallpaper = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setName("frameAppPrincipal"); // NOI18N
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlabelTitulo.setText("Elige a los perritos mas adorables");
+        getContentPane().add(jlabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+
+        txtImgPerrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImgPerritoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtImgPerrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 350, 240));
+
+        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/imagenes/siguiente.png"))); // NOI18N
+        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 50, 50));
+
+        btnFavorito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/imagenes/favorito.png"))); // NOI18N
+        btnFavorito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFavoritoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFavorito, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, 50, 50));
+
+        jlabelInfo.setText("info......");
+        getContentPane().add(jlabelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 500, 150, 50));
+
+        jlabelTituloPerrito.setText("¿Te gusta este perrito?");
+        getContentPane().add(jlabelTituloPerrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, -1, -1));
+
+        txtPrincipal.setPreferredSize(new java.awt.Dimension(770, 580));
+        txtPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrincipalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 610, 580));
+
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/imagenes/salir.png"))); // NOI18N
+        btnSalir.setText("  Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 180, 40));
+
+        btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/imagenes/perfil.png"))); // NOI18N
+        btnPerfil.setText(" Perfil");
+        getContentPane().add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 180, 40));
+
+        btnAjustes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/imagenes/ajustes.png"))); // NOI18N
+        btnAjustes.setText(" Ajustes");
+        getContentPane().add(btnAjustes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 180, 40));
+
+        btnFavoritos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/model/imagenes/favorito.png"))); // NOI18N
+        btnFavoritos.setText(" Favoritos");
+        btnFavoritos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFavoritosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnFavoritos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 180, 40));
+
+        btnLogo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logo-perroapp.png"))); // NOI18N
+        btnLogo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogo1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 90, 90));
+
+        btnInicio2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inicio.png"))); // NOI18N
+        btnInicio2.setText(" Inicio");
+        btnInicio2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicio2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnInicio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 180, 40));
+        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrincipalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrincipalActionPerformed
+
+    private void txtImgPerritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImgPerritoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtImgPerritoActionPerformed
+
+    private void btnFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritosActionPerformed
+       AppFavoritos favoritos = new AppFavoritos();
+       favoritos.setVisible(true);
+    }//GEN-LAST:event_btnFavoritosActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnLogo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogo1ActionPerformed
+
+    private void btnInicio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicio2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInicio2ActionPerformed
+
+    private void btnFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFavoritoActionPerformed
+
+    public Icon setIcono(String url, JButton boton){
+       ImageIcon icon = new  ImageIcon(getClass().getResource(url));
+       
+       int w = boton.getWidth();
+       int h = boton.getHeight();
+       
+       ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(w,h,Image.SCALE_DEFAULT));
+       return icono;
+    }
     /**
      * @param args the command line arguments
      */
@@ -70,13 +218,25 @@ public class AppPerro extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AppPerro().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AppPerro().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAjustes;
+    private javax.swing.JButton btnFavorito;
+    private javax.swing.JButton btnFavoritos;
+    private javax.swing.JButton btnInicio2;
+    private javax.swing.JButton btnLogo1;
+    private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JLabel jLabel_wallpaper;
+    private javax.swing.JLabel jlabelInfo;
+    private javax.swing.JLabel jlabelTitulo;
+    private javax.swing.JLabel jlabelTituloPerrito;
+    private javax.swing.JTextField txtImgPerrito;
+    private javax.swing.JTextField txtPrincipal;
     // End of variables declaration//GEN-END:variables
 }
