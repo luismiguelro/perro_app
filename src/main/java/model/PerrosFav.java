@@ -5,13 +5,11 @@ import io.github.cdimascio.dotenv.Dotenv;
  * @author Luis Miguel
  */
 public class PerrosFav {
+    public Imagex image;
     Dotenv dotenv = Dotenv.load();
-    private String id;
-    private String image_id;
+    public String id;
+    public String image_id;
     private String apiKey=dotenv.get("API_KEY");
-
-    Imagex image;
-
     public Dotenv getDotenv() {
         return dotenv;
     }
@@ -50,12 +48,9 @@ public class PerrosFav {
 
     public void setImage(Imagex image) {
         this.image = image;
-    }
+    }    
 
     public String getUrl() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
 }

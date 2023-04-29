@@ -7,26 +7,47 @@ package gui;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.WindowConstants;
+import model.Perros;
+import model.PerrosFav;
+import service.PerrosService;
+import static service.PerrosService.redimensionarImagen;
+import static service.PerrosService.verFavorito;
+import static service.PerrosService.verPerros;
+
+
 
 /**
  *
  * @author Luis Miguel
  */
-public class PerroFavorito extends javax.swing.JFrame {
+public final class PerroFavorito extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
+    Perros perrito = new Perros();
+    ImageIcon imagePerrito = null;
     public PerroFavorito() {
         initComponents();
         setSize(890,590);
         setResizable(false);
-        setTitle("Perrito App :)");
+        setTitle("Perrito App - Favoritos :)");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        
+        try {
+            String url=verFavorito(perrito.getApiKey());
+            cargarImagen(jlabel2,url);
+        } catch (IOException ex) {
+            Logger.getLogger(PerroApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     //cambiar icono interface
          @Override
@@ -50,11 +71,11 @@ public class PerroFavorito extends javax.swing.JFrame {
         btnFavoritos = new javax.swing.JButton();
         btnConfiguracion = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
-        txtImagenPrincipal = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jlabel2 = new javax.swing.JLabel();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,14 +117,7 @@ public class PerroFavorito extends javax.swing.JFrame {
                 btnSiguienteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, 150, 50));
-
-        txtImagenPrincipal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtImagenPrincipalActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtImagenPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 400, 290));
+        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 440, 150, 50));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +125,7 @@ public class PerroFavorito extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, 150, 50));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 150, 50));
 
         jLabel1.setText("Info...");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
@@ -121,17 +135,19 @@ public class PerroFavorito extends javax.swing.JFrame {
 
         jLabel7.setText("Creado por Luis M. Rodriguez");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, -1, -1));
+        getContentPane().add(jlabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 440, 290));
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 890, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtImagenPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImagenPrincipalActionPerformed
-       getContentPane().setCursor(null);
-    }//GEN-LAST:event_txtImagenPrincipalActionPerformed
-
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        // TODO add your handling code here:
+        try {
+            String url=verFavorito(perrito.getApiKey());
+            cargarImagen(jlabel2,url);
+        } catch (IOException ex) {
+            Logger.getLogger(PerroApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -152,6 +168,46 @@ public class PerroFavorito extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void cargarImagen(JLabel label, String url) {
+    // Carga la imagen y actualiza el label
+    ImageIcon imagen = redimensionarImagen(url);
+    label.setIcon(imagen);
+}
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PerroApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PerroApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PerroApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PerroApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PerroFavorito().setVisible(true);
+            }
+        });
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -165,7 +221,7 @@ public class PerroFavorito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel_wallpaper;
+    private javax.swing.JLabel jlabel2;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JTextField txtImagenPrincipal;
     // End of variables declaration//GEN-END:variables
 }

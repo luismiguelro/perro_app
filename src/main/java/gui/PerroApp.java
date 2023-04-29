@@ -155,18 +155,18 @@ public class PerroApp extends javax.swing.JFrame {
 
     private void btnAggFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAggFavoritoActionPerformed
         PerrosService.favoritoPerros(perrito);
-        int delay = 2000; // tiempo en milisegundos (5 segundos)
-        JOptionPane optionPane = new JOptionPane("Este es un mensaje de ejemplo.", JOptionPane.INFORMATION_MESSAGE);
-        JDialog dialog = optionPane.createDialog("Título del mensaje");
+        int delay = 500; // tiempo en milisegundos 
+        JOptionPane optionPane = new JOptionPane("Añadiendo a favoritos...", JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("Perrito favorito <#");
 
         // Configuramos un Timer que cierre el diálogo después del tiempo especificado
         Timer timer = new Timer(delay, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dialog.dispose();
                 try {
-                    //
-                perrito=verPerros();
-                cargarImagen(jLabel2, perrito.getUrl());
+                    
+                    perrito=verPerros();
+                    cargarImagen(jLabel2, perrito.getUrl());
             } catch (IOException ex) {
                 Logger.getLogger(PerroApp.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -193,19 +193,11 @@ dialog.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnFavoritosActionPerformed
 
-    // metodo para cargar la imageb
+    // metodo para cargar la imagen
 public void cargarImagen(JLabel label, String url) {
-    // Muestra la barra de progreso
-    JProgressBar barraProgreso = new JProgressBar();
-    barraProgreso.setIndeterminate(true);
-    label.add(barraProgreso);
-    
     // Carga la imagen y actualiza el label
     ImageIcon imagen = redimensionarImagen(url);
     label.setIcon(imagen);
-    
-    // Oculta la barra de progreso
-    label.remove(barraProgreso);
 }
 
 
