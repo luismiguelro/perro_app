@@ -38,11 +38,6 @@ public class PerrosService {
     private static String FAVORITE_ENDPOINT = BASE_URL+"/favourites";
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
-     // menus static
-    private static String FavoriteMenu = "Opciones: \n"
-                    + " 1. ver otra imagen 🔎\n"
-                    + " 2. Eliminar Favorito ❌\n"
-                    + " 3. Volver 🔙\n";
     
     
       // Metodos del menu(throws EX,E/S)
@@ -88,7 +83,7 @@ public class PerrosService {
         }
     }
     
-    public static String verFavorito(String apiKey) throws IOException {
+    public static PerrosFav verFavorito(String apiKey) throws IOException {
        
        OkHttpClient client = new OkHttpClient();
 
@@ -125,7 +120,7 @@ public class PerrosService {
         Image image = null;
         ImageIcon fondoPerrito = redimensionarImagen(perroFav.image.getUrl());
         
-        return perroFav.image.getUrl();
+        return perroFav;
             
             
             
@@ -140,11 +135,11 @@ public class PerrosService {
     public static void borrarFavorito(PerrosFav perroFav) throws IOException{
         
         try{
-            OkHttpClient client = new OkHttpClient();
+             OkHttpClient client = new OkHttpClient();
           MediaType mediaType = MediaType.parse("application/json");
           RequestBody body = RequestBody.create(mediaType, "");
           Request request = new Request.Builder()
-            .url(FAVORITE_ENDPOINT+perroFav.getId()+"")
+            .url("https://api.thedogapi.com/v1/favourites/"+perroFav.getId()+"")
             .method("DELETE", body)
             .addHeader("Content-Type", "application/json")
             .addHeader("x-api-key", perroFav.getApiKey())

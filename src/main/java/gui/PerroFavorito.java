@@ -7,12 +7,17 @@ package gui;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.WindowConstants;
 import model.Perros;
 import model.PerrosFav;
@@ -33,7 +38,8 @@ public final class PerroFavorito extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     Perros perrito = new Perros();
-    ImageIcon imagePerrito = null;
+    PerrosFav perritoFav = new PerrosFav();
+    
     public PerroFavorito() {
         initComponents();
         setSize(890,590);
@@ -43,8 +49,9 @@ public final class PerroFavorito extends javax.swing.JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
         try {
-            String url=verFavorito(perrito.getApiKey());
-            cargarImagen(jlabel2,url);
+              perritoFav = verFavorito(perrito.getApiKey());
+              cargarImagen(jlabel2,perritoFav.image.getUrl());
+             
         } catch (IOException ex) {
             Logger.getLogger(PerroApp.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,15 +150,38 @@ public final class PerroFavorito extends javax.swing.JFrame {
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         try {
-            String url=verFavorito(perrito.getApiKey());
-            cargarImagen(jlabel2,url);
+            perritoFav = verFavorito(perrito.getApiKey());
+            cargarImagen(jlabel2,perritoFav.image.getUrl());
+             System.out.println(perritoFav.image.getUrl());
         } catch (IOException ex) {
             Logger.getLogger(PerroApp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+
+        int delay = 700; // tiempo en milisegundos 
+        JOptionPane optionPane = new JOptionPane("Eliminando de favoritos...", JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("Perritos Favoritos - Eliminar");
+
+        // Configuramos un Timer que cierre el diálogo después del tiempo especificado
+        Timer timer = new Timer(delay, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose();
+                try {
+                    
+                    perritoFav = verFavorito(perrito.getApiKey());
+                    cargarImagen(jlabel2,perritoFav.image.getUrl());
+            } catch (IOException ex) {
+                Logger.getLogger(PerroApp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+
+        dialog.setVisible(true);
+       
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
@@ -159,7 +189,7 @@ public final class PerroFavorito extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+      this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
