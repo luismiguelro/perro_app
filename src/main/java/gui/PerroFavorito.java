@@ -88,6 +88,8 @@ public final class PerroFavorito extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/inicio.png"))); // NOI18N
         jButton1.setText("Inicio");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +98,8 @@ public final class PerroFavorito extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 150, 50));
 
+        btnSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/salir.png"))); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +108,8 @@ public final class PerroFavorito extends javax.swing.JFrame {
         });
         getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 150, 50));
 
+        btnPerfil.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/perfil.png"))); // NOI18N
         btnPerfil.setText("Perfil");
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,38 +118,48 @@ public final class PerroFavorito extends javax.swing.JFrame {
         });
         getContentPane().add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 150, 50));
 
+        btnFavoritos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnFavoritos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/favorito.png"))); // NOI18N
         btnFavoritos.setText("Favoritos");
         getContentPane().add(btnFavoritos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 150, 50));
 
+        btnConfiguracion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/ajustes.png"))); // NOI18N
         btnConfiguracion.setText("Configuración");
         getContentPane().add(btnConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 150, 50));
 
+        btnSiguiente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/siguiente.png"))); // NOI18N
         btnSiguiente.setText("Siguiente");
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiguienteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 440, 150, 50));
+        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, 150, 50));
 
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 150, 50));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, 150, 50));
 
         jLabel1.setText("Info...");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
 
+        labelTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitulo.setText("ADORA A TUS PERRITOS FAVORITOS");
-        getContentPane().add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, -1));
+        getContentPane().add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
 
         jLabel7.setText("Creado por Luis M. Rodriguez");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, -1, -1));
-        getContentPane().add(jlabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 440, 290));
-        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 890, 600));
+        getContentPane().add(jlabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 460, 290));
+        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -152,7 +168,7 @@ public final class PerroFavorito extends javax.swing.JFrame {
         try {
             perritoFav = verFavorito(perrito.getApiKey());
             cargarImagen(jlabel2,perritoFav.image.getUrl());
-             System.out.println(perritoFav.image.getUrl());
+            
         } catch (IOException ex) {
             Logger.getLogger(PerroApp.class.getName()).log(Level.SEVERE, null, ex);
         }

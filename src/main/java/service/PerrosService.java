@@ -139,7 +139,7 @@ public class PerrosService {
           MediaType mediaType = MediaType.parse("application/json");
           RequestBody body = RequestBody.create(mediaType, "");
           Request request = new Request.Builder()
-            .url("https://api.thedogapi.com/v1/favourites/"+perroFav.getId()+"")
+            .url(FAVORITE_ENDPOINT+"/"+perroFav.getId()+"")
             .method("DELETE", body)
             .addHeader("Content-Type", "application/json")
             .addHeader("x-api-key", perroFav.getApiKey())
@@ -169,8 +169,8 @@ public static ImageIcon redimensionarImagen(String url) {
         int altoOriginal = imagen.getIconHeight();
 
         // Dimensiones de la imagen redimensionada.
-        int anchoRedimensionado = 390;
-        int altoRedimensionado = 290;
+        int anchoRedimensionado = 420;
+        int altoRedimensionado = 320;
 
         // Redimensionamos la imagen original utilizando el método getScaledInstance() 
         // de la clase Image.
