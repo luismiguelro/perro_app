@@ -75,8 +75,6 @@ public class PerroApp extends javax.swing.JFrame {
         btnSiguiente = new javax.swing.JButton();
         btnAggFavorito = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        labelTitulo = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel_wallpaper = new javax.swing.JLabel();
 
@@ -84,71 +82,69 @@ public class PerroApp extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYELY\\Downloads\\srcPerroApp\\inicio.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYELY\\Documents\\NetBeansProjects\\PerroApp\\src\\main\\java\\gui\\images\\inicio.png")); // NOI18N
         jButton1.setText("Inicio");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 150, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 160, 50));
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYELY\\Documents\\NetBeansProjects\\PerroApp\\src\\main\\java\\gui\\images\\salir.png")); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 150, 50));
+        getContentPane().add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 160, 50));
 
         btnPerfil.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYELY\\Downloads\\srcPerroApp\\perfil.png")); // NOI18N
+        btnPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYELY\\Documents\\NetBeansProjects\\PerroApp\\src\\main\\java\\gui\\images\\perfil.png")); // NOI18N
         btnPerfil.setText("Perfil");
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPerfilActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 150, 50));
+        getContentPane().add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 160, 50));
 
         btnFavoritos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnFavoritos.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYELY\\Documents\\NetBeansProjects\\PerroApp\\src\\main\\java\\gui\\images\\favorito.png")); // NOI18N
         btnFavoritos.setText("Favoritos");
         btnFavoritos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFavoritosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFavoritos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 150, 50));
+        getContentPane().add(btnFavoritos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 160, 50));
 
         btnConfiguracion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnConfiguracion.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYELY\\Documents\\NetBeansProjects\\PerroApp\\src\\main\\java\\gui\\images\\ajustes.png")); // NOI18N
         btnConfiguracion.setText("Configuración");
-        getContentPane().add(btnConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 150, 50));
+        getContentPane().add(btnConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 160, 50));
 
         btnSiguiente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSiguiente.setText("Siguiente");
+        btnSiguiente.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYELY\\Documents\\NetBeansProjects\\PerroApp\\src\\main\\java\\gui\\images\\siguiente.png")); // NOI18N
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiguienteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 150, 50));
+        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 440, 80, 50));
 
         btnAggFavorito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnAggFavorito.setText("Añadir Favorito");
+        btnAggFavorito.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYELY\\Documents\\NetBeansProjects\\PerroApp\\src\\main\\java\\gui\\images\\favorito.png")); // NOI18N
+        btnAggFavorito.setToolTipText("");
         btnAggFavorito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAggFavoritoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAggFavorito, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 440, 150, 50));
+        getContentPane().add(btnAggFavorito, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 80, 50));
 
         jLabel1.setText("Info...");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
-
-        labelTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitulo.setText("¿TE GUSTA ESTE PERRITO?");
-        getContentPane().add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
-
-        jLabel7.setText("Creado por Luis M. Rodriguez");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, -1, -1));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 450, 280));
+
+        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon("C:\\Users\\IYELY\\Documents\\NetBeansProjects\\PerroApp\\src\\main\\java\\gui\\images\\fondo.png")); // NOI18N
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 590));
 
         pack();
@@ -192,11 +188,11 @@ dialog.setVisible(true);
     }//GEN-LAST:event_btnAggFavoritoActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritosActionPerformed
@@ -260,8 +256,6 @@ public void cargarImagen(JLabel label, String url) {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel_wallpaper;
-    private javax.swing.JLabel labelTitulo;
     // End of variables declaration//GEN-END:variables
 }
