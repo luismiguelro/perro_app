@@ -20,7 +20,7 @@ Temáticas:
 - Dominar la persistencia en APIs rest
 
 ### Demostración
-![Animation 3](https://user-images.githubusercontent.com/101124184/230725058-f393fed6-d512-4b20-b4c5-82dfc06cd154.gif)
+![perritoapp](https://github.com/luismiguelro/perro_app/assets/101124184/7310688c-d003-4cf6-9103-bfc5f09a7993)
 
 
 ## Mi Proceso
@@ -29,6 +29,8 @@ Temáticas:
 
 -   Manejador de dependencias: Maven
 -   API para obtener las imágenes de perros: [The Dog API](https://thedogapi.com/)
+-   Uso de OkHttpClient como dependencia para realizar peticiones HTTP a un API externa.
+-   Peticiones HTTP como GET, POST, DELETE para gestionar información proporcionada por el API publica.
 
 ## Certificación
 
